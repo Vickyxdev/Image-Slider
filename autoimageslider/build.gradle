@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 
 ext {
@@ -71,3 +72,16 @@ task copyLibs(type: Copy) {
 
 //apply from: 'https://raw.githubusercontent.com/smarteist/bintrayUpload/master/install.gradle'
 //apply from: 'https://raw.githubusercontent.com/smarteist/bintrayUpload/master/bintray.gradle'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.Vickyxdev'
+                artifactId = 'Image-Slider'
+                version = '1.0'
+            }
+        }
+    }
+}
